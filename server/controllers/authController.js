@@ -153,6 +153,7 @@ export const sendVerifyOtp = async (req, res) => {
   }
 };
 
+// Verifu the email using the OTP
 export const verifyEmail = async (req, res) => {
   const { userId, otp } = req.body;
 
@@ -182,15 +183,72 @@ export const verifyEmail = async (req, res) => {
         message: "OTP Expired",
       });
     }
-    user.isAccounteVerified=true
-    user.verifyOtp=''
-    user.verifyOtpExpireAt=0
-    await user.save()
+    user.isAccounteVerified = true;
+    user.verifyOtp = "";
+    user.verifyOtpExpireAt = 0;
+    await user.save();
 
     return res.json({
-      success:true,
-      message:"Email Verified Successfully"
-    })
+      success: true,
+      message: "Email Verified Successfully",
+    });
+  } catch (error) {
+    return res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// Check user is authenticated
+export const isAuthenticated = async (req, res) => {
+  try {
+    return res.json({
+      success: true,
+      userID: req.user.id,
+    });
+  } catch (error) {
+    return res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// Send Password resend OTP
+export const sendResetOtp = async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    return res.json({
+      success: false,
+      message: "Email is required",
+    });
+  }
+  try {
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    const otp = String(Math.floor(100000 + Math.random() * 900000));
+    user.resetOtp = otp;
+    user.resetOtpExpireAt = Date.now() + 15 * 60 * 1000;
+    await user.save();
+    const mailOption = {
+      from: process.env.SENDER_EMAIL,
+      to: user.email,
+      subject: "Password Reset OTP",
+      text: `Your OTP for resetting your password is ${otp}
+      Use this OTP to proceed with resetting your Password`,
+    };
+    await transporter.sendMail(mailOption);
+
+    return res.json({
+      success: true,
+      message: "OTP sent to your email",
+    });
   } catch (error) {
     return res.json({
       success: false,
