@@ -33,7 +33,7 @@ const Login = () => {
           getUserData()
           navigate("/");
         } else {
-          toast.error(error.message);
+          toast.error(data.message);
         }
       } else {
         const { data } = await axios.post(backendUrl + "/api/auth/login", {
@@ -46,7 +46,7 @@ const Login = () => {
           getUserData()
           navigate("/");
         } else {
-          toast.error(error.message);
+          toast.error(data.message);
         }
       }
     } catch (error) {

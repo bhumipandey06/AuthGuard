@@ -76,7 +76,7 @@ const EmailVerify = () => {
           Email Verify OTP
         </h1>
         <p className="text-center mb-6 text-indigo-300">
-          Enter the 6-digit Code sent to your Email ID.{" "}
+          Enter the 6-digit Code sent to your Email ID.
         </p>
         <div className="flex justify-between mb-8" onPaste={handlePaste}>
           {Array(6)
