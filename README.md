@@ -18,15 +18,14 @@ The app features:
 
 Check out the live demo [here](https://auth-guard-three.vercel.app/).
 
-## Features
+## Usage
 
-- User authentication and authorization
-- React Router for navigation and route protection
-- Email verification via OTP for additional security
-- Password reset functionality via OTP sent to registered email
-- Access to **Quotes** route by clicking **Get Started** after registration or login
-- State management using React hooks
-- Responsive and user-friendly interface
+- Register a new account.
+- Log in if you already have an account.
+- After registration or login, click **Get Started** to access the **Quotes** route.
+- If you forget your password, reset it by requesting an OTP sent to your registered email address.
+- Verify your account after logging in via an OTP sent to your registered email.
+- Log out to secure your session.
 
 ## Technologies Used
 
@@ -47,3 +46,13 @@ Check out the live demo [here](https://auth-guard-three.vercel.app/).
 1. Clone the repo:
    ```bash
    git clone https://github.com/bhumipandey06/AuthGuard.git
+
+## Features
+
+- User authentication and authorization
+- React Router for navigation and route protection
+- Email verification via OTP for additional security
+- Password reset functionality via OTP sent to registered email
+- Access to **Quotes** route by clicking **Get Started** after registration or login
+- State management using React hooks
+- Responsive and user-friendly interface
