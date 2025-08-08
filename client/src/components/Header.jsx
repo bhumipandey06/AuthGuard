@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { assets } from "../assets/assets";
 import { AppContent } from "../context/AppContext";
 
-const Header = () => {
+const Header =() => {
 
   const {userData} = useContext(AppContent)
 
@@ -33,8 +33,7 @@ const Header = () => {
       </p>
       <button
         className="border border-gray-500 rounded-full px-8 py-2.5
-        hover:bg-gray-100 transition-all "
-      >
+        hover:bg-gray-100 transition-all ">
         Get Started{" "}
       </button>
     </div>
